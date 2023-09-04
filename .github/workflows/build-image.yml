@@ -39,11 +39,11 @@ jobs:
       
       - name: Find latest release of app
         run: |
-          echo "EXT_RELEASE=curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -s https://api.github.com/repos/${{ env.EXT_USER }}/${{ env.EXT_REPO }}/releases/latest | jq -r '. | .tag_name'" >> $GITHUB_OUTPUT
+          echo "EXT_RELEASE=$(curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -s https://api.github.com/repos/${{ env.EXT_USER }}/${{ env.EXT_REPO }}/releases/latest | jq -r '. | .tag_name')" >> $GITHUB_OUTPUT
 
       - name: Sanite Release version
         run: |
-          echo "EXT_RELEASE_CLEAN=echo ${{ env.EXT_RELEASE }} | sed 's/[~,%@+;:/]//g' >> $GITHUB_OUTPUT
+          echo "EXT_RELEASE_CLEAN=$(echo ${{ env.EXT_RELEASE }} | sed 's/[~,%@+;:/]//g')" >> $GITHUB_OUTPUT
 
       - name: Docker meta
         id: meta
@@ -56,8 +56,8 @@ jobs:
           tags: |
             type=sha,format=long
             type=raw,value=${{ github.ref_name }}
-            type=ref,event=branch,prefix=${{ env.VERSION }}-
-            type=ref,event=tag,prefix=${{ env.VERSION }}-
+            type=ref,event=branch,prefix=${{ env.EXT_RELEASE_CLEAN }}-
+            type=ref,event=tag,prefix=${{ env.EXT_RELEASE_CLEAN }}-
           labels: |
             org.opencontainers.image.created=${{ env.NOW }}
             org.opencontainers.image.authors=Carlos Sanchez
