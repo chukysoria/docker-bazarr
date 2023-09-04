@@ -59,7 +59,7 @@ RUN \
     /app/bazarr/bin/postgres-requirements.txt -L \
     "https://raw.githubusercontent.com/morpheus65535/bazarr/${BAZARR_VERSION}/postgres-requirements.txt" && \
   echo "**** Install requirements ****" && \
-  sed -i 's/--only-binary=Pillow//' requirements.txt && \
+  sed -i 's/--only-binary=Pillow//' /app/bazarr/bin/requirements.txt && \
   python3 -m venv /lsiopy && \
   pip install -U --no-cache-dir \
     pip \
