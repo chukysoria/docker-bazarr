@@ -62,7 +62,8 @@ RUN \
   python3 -m venv /lsiopy && \
   pip install -U --no-cache-dir \
     pip \
-    wheel && \
+    wheel &&
+  sed -i 's/--only-binary=Pillow//' requirements.txt && \
   pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.18/ \
     -r /app/bazarr/bin/requirements.txt \
     -r /app/bazarr/bin/postgres-requirements.txt && \
