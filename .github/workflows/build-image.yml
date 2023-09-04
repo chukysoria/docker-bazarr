@@ -39,11 +39,11 @@ jobs:
       
       - name: Find latest release of app
         run: |
-          echo "EXT_RELEASE=$(curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -s https://api.github.com/repos/${{ env.EXT_USER }}/${{ env.EXT_REPO }}/releases/latest | jq -r '. | .tag_name')" >> $GITHUB_OUTPUT
+          echo "EXT_RELEASE=$(curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -s https://api.github.com/repos/${{ env.EXT_USER }}/${{ env.EXT_REPO }}/releases/latest | jq -r '. | .tag_name')" >> "$GITHUB_ENV"
 
       - name: Sanite Release version
         run: |
-          echo "EXT_RELEASE_CLEAN=$(echo ${{ env.EXT_RELEASE }} | sed 's/[~,%@+;:/]//g')" >> $GITHUB_OUTPUT
+          echo "EXT_RELEASE_CLEAN=$(echo ${{ env.EXT_RELEASE }} | sed 's/[~,%@+;:/]//g')" >> "$GITHUB_ENV"
 
       - name: Docker meta
         id: meta
