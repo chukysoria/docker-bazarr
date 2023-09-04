@@ -54,9 +54,7 @@ The architectures supported by this image are:
 
 | Architecture | Available | Tag |
 | :----: | :----: | ---- |
-| x86-64 | ✅ | amd64-\<version tag\> |
-| arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf | ❌ | |
+| armhf | ✅ | armhf-\<version tag\> |
 
 ## Version Tags
 
@@ -65,7 +63,6 @@ This image provides various versions that are available via tags. Please read th
 | Tag | Available | Description |
 | :----: | :----: |--- |
 | latest | ✅ | Stable releases from Bazarr |
-| development | ✅ | Pre-releases from Bazarr |
 ## Application Setup
 
 - Once running the URL will be `http://<host-ip>:6767`.
