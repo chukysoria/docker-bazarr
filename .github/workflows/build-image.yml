@@ -43,7 +43,7 @@ jobs:
 
       - name: Sanite Release version
         run: |
-          echo "EXT_RELEASE_CLEAN=$(echo ${{ env.EXT_RELEASE }} | sed 's/[~,%@+;:/]//g')" >> "$GITHUB_ENV"
+          echo "EXT_RELEASE_CLEAN=$(echo '${{ env.EXT_RELEASE }}' | sed 's/[~,%@+;:/]//g')" >> "$GITHUB_ENV"
 
       - name: Docker meta
         id: meta
@@ -78,6 +78,7 @@ jobs:
           push: ${{ github.event_name == 'release' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          pull: true
           build-args: |
             ${{ env.BUILD_VERSION_ARG }}=${{ env.EXT_RELEASE }}
             VERSION=${{ github.ref_name }}
