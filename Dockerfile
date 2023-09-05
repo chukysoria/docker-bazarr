@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/chukysoria/alpine:3.17
+FROM ghcr.io/chukysoria/baseimage-alpine:3.18
 
 # set version label
 ARG UNRAR_VERSION=6.2.10
@@ -65,6 +65,7 @@ RUN \
     pip \
     wheel && \
   pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.17/ \
+    --extra-index-url="https://gitlab.com/api/v4/projects/49075787/packages/pypi/simple" \
     -r /app/bazarr/bin/requirements.txt \
     -r /app/bazarr/bin/postgres-requirements.txt && \
   echo "**** clean up ****" && \
