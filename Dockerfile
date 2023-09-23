@@ -28,7 +28,7 @@ RUN \
     /app/bazarr/bin && \
   curl -o \
     /tmp/bazarr.zip -L \
-    "https://github.com/morpheus65535/bazarr/releases/download/${BUILD_EXT_RELEASE}/bazarr.zip" && \
+    "https://github.com/morpheus65535/bazarr/releases/download/v${BUILD_EXT_RELEASE}/bazarr.zip" && \
   unzip \
     /tmp/bazarr.zip -d \
     /app/bazarr/bin && \
@@ -36,7 +36,7 @@ RUN \
   echo "UpdateMethod=docker\nBranch=master\nPackageVersion=${BUILD_VERSION}\nPackageAuthor=chukyserver.io" > /app/bazarr/package_info && \
   curl -o \
     /app/bazarr/bin/postgres-requirements.txt -L \
-    "https://raw.githubusercontent.com/morpheus65535/bazarr/${BUILD_EXT_RELEASE}/postgres-requirements.txt" && \
+    "https://raw.githubusercontent.com/morpheus65535/bazarr/v${BUILD_EXT_RELEASE}/postgres-requirements.txt" && \
   echo "**** Install requirements ****" && \
   sed -i 's/--only-binary=Pillow//' /app/bazarr/bin/requirements.txt && \
   python3 -m venv /lsiopy && \
