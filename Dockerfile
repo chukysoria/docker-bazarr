@@ -2,7 +2,7 @@
 
 ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:3.18-v0.2.0
 
-FROM ghcr.io/chukysoria/docker-unrar:v0.1.0 as unrar
+FROM ghcr.io/chukysoria/docker-unrar:6.2.11 as unrar
 
 FROM ${BUILD_FROM} 
 
