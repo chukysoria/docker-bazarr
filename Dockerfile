@@ -1,44 +1,42 @@
 # syntax=docker/dockerfile:1
 
+ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:3.18-v0.2.0
+
 FROM ghcr.io/chukysoria/docker-unrar:v0.1.0 as unrar
 
-FROM ghcr.io/chukysoria/baseimage-alpine:3.18-v0.2.0
+FROM ${BUILD_FROM} 
 
 # set version label
 ARG BUILD_DATE
-ARG VERSION
-ARG BAZARR_VERSION
-LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="Carlos"
+ARG BUILD_VERSION
+ARG BUILD_EXT_RELEASE="1.3.0"
+LABEL build_version="Chukyserver.io version:- ${BUILD_VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="chukysoria"
 # hard set UTC in case the user does not define it
 ENV TZ="Etc/UTC"
 
 RUN \
   echo "**** install packages ****" && \
   apk add --no-cache \
-    ffmpeg \
-    libxml2 \
-    libxslt \
-    mediainfo \
-    python3 && \
+    ffmpeg=6.0-r15 \
+    libxml2=2.11.4-r0 \
+    libxslt=1.1.38-r0 \
+    mediainfo=23.07-r0 \
+    python3=3.11.5-r0 && \
   echo "**** install bazarr ****" && \
   mkdir -p \
     /app/bazarr/bin && \
-  if [ -z ${BAZARR_VERSION+x} ]; then \
-    BAZARR_VERSION=$(curl -sX GET "https://api.github.com/repos/morpheus65535/bazarr/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
-  fi && \
   curl -o \
     /tmp/bazarr.zip -L \
-    "https://github.com/morpheus65535/bazarr/releases/download/${BAZARR_VERSION}/bazarr.zip" && \
+    "https://github.com/morpheus65535/bazarr/releases/download/v${BUILD_EXT_RELEASE}/bazarr.zip" && \
   unzip \
     /tmp/bazarr.zip -d \
     /app/bazarr/bin && \
   rm -Rf /app/bazarr/bin/bin && \
-  echo "UpdateMethod=docker\nBranch=master\nPackageVersion=${VERSION}\nPackageAuthor=linuxserver.io" > /app/bazarr/package_info && \
+  echo "UpdateMethod=docker\nBranch=master\nPackageVersion=${BUILD_VERSION}\nPackageAuthor=chukyserver.io" > /app/bazarr/package_info && \
   curl -o \
     /app/bazarr/bin/postgres-requirements.txt -L \
-    "https://raw.githubusercontent.com/morpheus65535/bazarr/${BAZARR_VERSION}/postgres-requirements.txt" && \
+    "https://raw.githubusercontent.com/morpheus65535/bazarr/v${BUILD_EXT_RELEASE}/postgres-requirements.txt" && \
   echo "**** Install requirements ****" && \
   sed -i 's/--only-binary=Pillow//' /app/bazarr/bin/requirements.txt && \
   python3 -m venv /lsiopy && \
