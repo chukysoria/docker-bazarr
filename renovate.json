@@ -26,9 +26,10 @@
       "depNameTemplate": "alpine_3_18/{{package}}"
     },
     {
-      "fileMatch": ["(^|/)Dockerfile$"],
+      "fileMatch": ["(^|/)Dockerfile$", "(^|/)config.yaml$"],
       "matchStrings": [
-        "ARG EXT_RELEASE_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
+        "ARG BUILD_EXT_RELEASE=[\"']?(?<currentValue>.+?)[\"']?\\s+",
+        "ext_release: (?<currentValue>.+)"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "morpheus65535/bazarr"
