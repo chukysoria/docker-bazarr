@@ -1,9 +1,10 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/chukysoria/baseimage-alpine:3.18
+FROM ghcr.io/chukysoria/docker-unrar:v0.1.0 as unrar
+
+FROM ghcr.io/chukysoria/baseimage-alpine:3.18-v0.2.0
 
 # set version label
-ARG UNRAR_VERSION=6.2.10
 ARG BUILD_DATE
 ARG VERSION
 ARG BAZARR_VERSION
@@ -13,15 +14,6 @@ LABEL maintainer="Carlos"
 ENV TZ="Etc/UTC"
 
 RUN \
-  echo "**** install build packages ****" && \
-  apk add --no-cache --virtual=build-dependencies \
-    build-base \
-    cargo \
-    libffi-dev \
-    libpq-dev \
-    libxml2-dev \
-    libxslt-dev \
-    python3-dev && \
   echo "**** install packages ****" && \
   apk add --no-cache \
     ffmpeg \
@@ -29,17 +21,6 @@ RUN \
     libxslt \
     mediainfo \
     python3 && \
-  echo "**** install unrar from source ****" && \
-  mkdir /tmp/unrar && \
-  curl -o \
-    /tmp/unrar.tar.gz -L \
-    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \  
-  tar xf \
-    /tmp/unrar.tar.gz -C \
-    /tmp/unrar --strip-components=1 && \
-  cd /tmp/unrar && \
-  make && \
-  install -v -m755 unrar /usr/local/bin && \
   echo "**** install bazarr ****" && \
   mkdir -p \
     /app/bazarr/bin && \
@@ -62,22 +43,21 @@ RUN \
   sed -i 's/--only-binary=Pillow//' /app/bazarr/bin/requirements.txt && \
   python3 -m venv /lsiopy && \
   pip install -U --no-cache-dir \
-    pip \
-    wheel && \
-  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.17/ \
+    pip && \
+  pip install -U --no-cache-dir \
     --extra-index-url="https://gitlab.com/api/v4/projects/49075787/packages/pypi/simple" \
     -r /app/bazarr/bin/requirements.txt \
     -r /app/bazarr/bin/postgres-requirements.txt && \
   echo "**** clean up ****" && \
-  apk del --purge \
-    build-dependencies && \
   rm -rf \
     $HOME/.cache \
-    $HOME/.cargo \
     /tmp/*
 
 # add local files
 COPY root/ /
+
+# add unrar
+COPY --from=unrar /usr/bin/unrar-alpine /usr/bin/unrar
 
 # ports and volumes
 EXPOSE 6767
