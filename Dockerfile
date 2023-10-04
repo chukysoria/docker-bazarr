@@ -22,7 +22,7 @@ RUN \
     libxml2=2.11.4-r0 \
     libxslt=1.1.38-r0 \
     mediainfo=23.07-r0 \
-    python3=3.11.5-r0 && \
+    python3=3.11.6-r0 && \
   echo "**** install bazarr ****" && \
   mkdir -p \
     /app/bazarr/bin && \
