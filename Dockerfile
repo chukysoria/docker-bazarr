@@ -9,7 +9,7 @@ FROM ${BUILD_FROM}
 # set version label
 ARG BUILD_DATE
 ARG BUILD_VERSION
-ARG BUILD_EXT_RELEASE="1.3.0"
+ARG BUILD_EXT_RELEASE="v1.3.1"
 LABEL build_version="Chukyserver.io version:- ${BUILD_VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="chukysoria"
 # hard set UTC in case the user does not define it
@@ -28,7 +28,7 @@ RUN \
     /app/bazarr/bin && \
   curl -o \
     /tmp/bazarr.zip -L \
-    "https://github.com/morpheus65535/bazarr/releases/download/v${BUILD_EXT_RELEASE}/bazarr.zip" && \
+    "https://github.com/morpheus65535/bazarr/releases/download/${BUILD_EXT_RELEASE}/bazarr.zip" && \
   unzip \
     /tmp/bazarr.zip -d \
     /app/bazarr/bin && \
@@ -36,7 +36,7 @@ RUN \
   echo "UpdateMethod=docker\nBranch=master\nPackageVersion=${BUILD_VERSION}\nPackageAuthor=chukyserver.io" > /app/bazarr/package_info && \
   curl -o \
     /app/bazarr/bin/postgres-requirements.txt -L \
-    "https://raw.githubusercontent.com/morpheus65535/bazarr/v${BUILD_EXT_RELEASE}/postgres-requirements.txt" && \
+    "https://raw.githubusercontent.com/morpheus65535/bazarr/${BUILD_EXT_RELEASE}/postgres-requirements.txt" && \
   echo "**** Install requirements ****" && \
   sed -i 's/--only-binary=Pillow//' /app/bazarr/bin/requirements.txt && \
   python3 -m venv /lsiopy && \
