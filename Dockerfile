@@ -61,3 +61,5 @@ COPY --from=unrar /usr/bin/unrar-alpine /usr/bin/unrar
 EXPOSE 6767
 
 VOLUME /config
+
+HEALTHCHECK --interval=30s --timeout=30s --start-period=2m --start-interval=5s --retries=5 CMD ["nc", "-z", "localhost", "6767"]
