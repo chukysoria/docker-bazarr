@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:v0.5.23-3.19
+ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:v0.5.25-3.19
 
 FROM ghcr.io/chukysoria/docker-unrar:v1.0.9 as unrar
 
