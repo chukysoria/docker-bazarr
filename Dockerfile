@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:v0.5.28-3.19
+ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:v0.6.0-3.20
 
 FROM ghcr.io/chukysoria/docker-unrar:v1.0.11 as unrar
 
@@ -18,11 +18,11 @@ ENV TZ="Etc/UTC"
 RUN \
   echo "**** install packages ****" && \
   apk add --no-cache \
-    ffmpeg=6.1.1-r0 \
-    libxml2=2.11.8-r0 \
-    libxslt=1.1.39-r0 \
-    mediainfo=23.11-r0 \
-    python3=3.11.9-r0 && \
+    ffmpeg=6.1.1-r7 \
+    libxml2=2.12.7-r0 \
+    libxslt=1.1.39-r1 \
+    mediainfo=24.04-r0 \
+    python3=3.12.3-r1 && \
   echo "**** install bazarr ****" && \
   mkdir -p \
     /app/bazarr/bin && \
