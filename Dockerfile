@@ -18,7 +18,7 @@ ENV TZ="Etc/UTC"
 RUN \
   echo "**** install packages ****" && \
   apk add --no-cache \
-    ffmpeg=6.1.1-r7 \
+    ffmpeg=6.1.1-r8 \
     libxml2=2.12.7-r0 \
     libxslt=1.1.39-r1 \
     mediainfo=24.04-r0 \
