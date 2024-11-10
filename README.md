@@ -69,6 +69,10 @@ This image provides various versions that are available via tags. Please read th
 - Once running the URL will be `http://<host-ip>:6767`.
 - You must complete all the setup parameters in the webui before you can save the config.
 
+## Read-Only Operation
+
+This image can be run with a read-only container filesystem. For details please [read the docs](https://docs.linuxserver.io/misc/read-only/).
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -123,6 +127,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-v /config` | Persistent config files |
 | `-v /movies` | Location of your movies |
 | `-v /tv` | Location of your TV Shows |
+| `--read-only=true` | Run container with a read-only filesystem. Please [read the docs](https://docs.linuxserver.io/misc/read-only/). |
 
 ## Environment variables from files (Docker secrets)
 
@@ -260,7 +265,8 @@ Below are the instructions for updating containers:
 
 ### Image Update Notifications - Diun (Docker Image Update Notifier)
 
-**tip**: We recommend [Diun](https://crazymax.dev/diun/) for update notifications. Other tools that automatically update containers unattended are not recommended or supported.
+>[!TIP]
+>We recommend [Diun](https://crazymax.dev/diun/) for update notifications. Other tools that automatically update containers unattended are not recommended or supported.
 
 ## Building locally
 
@@ -285,6 +291,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **24.06.24:** - Rebase to Alpine 3.20.
 * **23.12.23:** - Rebase to Alpine 3.19.
 * **19.09.23:** - Install unrar from [linuxserver repo](https://github.com/linuxserver/docker-unrar).
 * **11.08.23:** - Rebase to Alpine 3.18.

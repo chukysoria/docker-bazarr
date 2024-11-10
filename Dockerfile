@@ -2,7 +2,7 @@
 
 ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:v0.6.21-3.20
 
-FROM ghcr.io/chukysoria/docker-unrar:v1.1.0 as unrar
+FROM ghcr.io/chukysoria/docker-unrar:v1.1.0 AS unrar
 
 FROM ${BUILD_FROM} 
 
@@ -46,6 +46,7 @@ RUN \
     --extra-index-url="https://gitlab.com/api/v4/projects/49075787/packages/pypi/simple" \
     -r /app/bazarr/bin/requirements.txt \
     -r /app/bazarr/bin/postgres-requirements.txt && \
+  printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** clean up ****" && \
   rm -rf \
     $HOME/.cache \
