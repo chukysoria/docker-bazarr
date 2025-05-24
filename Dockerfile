@@ -3,7 +3,7 @@
 ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:v0.7.14-3.21@sha256:b48aae1f577b501f128277137637eeeba5ac1b061dab6fd1385742949838cd7a
 FROM ghcr.io/chukysoria/docker-unrar:v1.1.6@sha256:e6996c3ea5e734f7d0c9dd73710d92655898e742550269bfff050ff3c881b312 AS unrar
 
-FROM ${BUILD_FROM} 
+FROM ${BUILD_FROM}
 
 # set version label
 ARG BUILD_DATE
