@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1@sha256:9857836c9ee4268391bb5b09f9f157f3c91bb15821bb77969642813b0d00518d
 
-ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:v0.8.1-3.22@sha256:308e9c2c52121a5f33cbbbb5ea52a1719b19ac40fd3c54238486c815e69b6275
+ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:v0.8.2-3.22@sha256:73c5f12335adbe9127931176a85e6c745d32ac9367bca6638a9bbd48febb27e2
 FROM ghcr.io/chukysoria/docker-unrar:v1.1.7@sha256:7bcb08a561c9c3e5bf46296ec3f550b369cbd4236c597e88b7d66103dd7ce1fc AS unrar
 
 FROM ${BUILD_FROM}
@@ -17,10 +17,10 @@ ENV TZ="Etc/UTC"
 RUN \
   echo "**** install packages ****" && \
   apk add --no-cache \
-    ffmpeg=6.1.2-r1 \
-    libxml2=2.13.4-r6 \
-    libxslt=1.1.42-r2 \
-    mediainfo=24.11-r0 \
+    ffmpeg=6.1.2-r2 \
+    libxml2=2.13.8-r0 \
+    libxslt=1.1.43-r3 \
+    mediainfo=25.03-r0 \
     python3=3.12.10-r1 && \
   echo "**** install bazarr ****" && \
   mkdir -p \
