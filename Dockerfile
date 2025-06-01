@@ -17,9 +17,9 @@ ENV TZ="Etc/UTC"
 RUN \
   echo "**** install packages ****" && \
   apk add --no-cache \
-    ffmpeg=6.1.2-r1 \
-    libxml2=2.13.4-r6 \
-    libxslt=1.1.42-r2 \
+    ffmpeg=6.1.2-r2 \
+    libxml2=2.13.8-r0 \
+    libxslt=1.1.43-r3 \
     mediainfo=24.11-r0 \
     python3=3.12.10-r1 && \
   echo "**** install bazarr ****" && \
