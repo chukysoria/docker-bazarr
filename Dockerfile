@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1@sha256:9857836c9ee4268391bb5b09f9f157f3c91bb15821bb77969642813b0d00518d
 
 ARG BUILD_FROM=ghcr.io/chukysoria/baseimage-alpine:v0.8.6-3.22@sha256:1d415ee7f5b6b09b37ed324db7de383bdee2f2f46c55fc0736c8f7e35762ef9d
-FROM ghcr.io/chukysoria/docker-unrar:v1.1.9@sha256:a0a5c8d5f230116b76d247188fb9260c7aecbd760dc532d5e2a2760438d0f158 AS unrar
+FROM ghcr.io/chukysoria/docker-unrar:v1.1.10@sha256:a6d36e67cc14e2ed80c0d151e5d8e45f3a01112715c19766cdff0b957172f381 AS unrar
 
 FROM ${BUILD_FROM}
 
