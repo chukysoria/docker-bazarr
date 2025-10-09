@@ -18,7 +18,7 @@ RUN \
   echo "**** install packages ****" && \
   apk add --no-cache \
     ffmpeg=6.1.2-r2 \
-    libxml2=2.13.8-r0 \
+    libxml2=2.13.9-r0 \
     libxslt=1.1.43-r3 \
     mediainfo=25.03-r0 \
     python3=3.12.11-r0 && \
