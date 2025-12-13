@@ -20,7 +20,7 @@ RUN \
     ffmpeg=8.0.1-r0 \
     libxml2=2.13.9-r0 \
     libxslt=1.1.43-r3 \
-    mediainfo=25.03-r0 \
+    mediainfo=25.09-r0 \
     python3=3.12.12-r0 && \
   echo "**** install bazarr ****" && \
   mkdir -p \
