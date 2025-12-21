@@ -1,6 +1,6 @@
 ---
 image: bazarr
-version: v0.8.21
+version: v0.8.22
 name: Bazarr
 description: "[Bazarr](https://www.bazarr.media/) is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you."
 ext_release: "v1.5.3"
