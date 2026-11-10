@@ -19,7 +19,7 @@ RUN \
   apk add --no-cache \
     ffmpeg=8.1.3-r0 \
     libxml2=2.13.9-r2 \
-    libxslt=1.1.43-r3 \
+    libxslt=1.1.43-r4 \
     mediainfo=26.01-r0 \
     python3=3.14.10-r1 && \
   echo "**** install bazarr ****" && \
